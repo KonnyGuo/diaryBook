@@ -5,6 +5,7 @@ const dotenv = require('dotenv')
 //morgan for logging
 const morgan = require('morgan')
 const exphbs = require('express-handlebars')
+const session = require('express-session')
 const passport = require('passport')
 
 //confgis
@@ -26,6 +27,15 @@ app.engine('.hbs', exphbs.engine({
 )
 
 app.set('view engine', '.hbs')
+
+//session middleware(needs to be above passport middleware)
+//order important because passport session look for session manager attach to req which express-session does to look up user from db
+app.use(session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    
+}))
 
 //passport middleware
 app.use(passport.initialize())
