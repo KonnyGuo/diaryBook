@@ -29,7 +29,7 @@ app.set('view engine', '.hbs')
 app.use(express.static(path.join(__dirname, 'public')))
 
 //routes
-app.use("/",require("./routes/index"))
+app.use("/", require("./routes/index"))
 // app.use("/dashboard", require("./routes/index")), not needed
 
 
