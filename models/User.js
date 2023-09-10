@@ -30,5 +30,5 @@ UserSchema = new mongoose.Schema({
 
 //third parameter will be collection name.
 //if third parameter not enter then whatever you name the mode will be the db's collection name
-//in this case it will be User
+//in this case it will be User pluralized so users
 module.exports = mongoose.model("User", UserSchema)
