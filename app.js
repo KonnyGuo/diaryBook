@@ -5,10 +5,13 @@ const dotenv = require('dotenv')
 //morgan for logging
 const morgan = require('morgan')
 const exphbs = require('express-handlebars')
+const passport = require('passport')
 
 //confgis
 dotenv.config({path: './config/.env'})
 const connectDB = require('./config/db')
+//passport config
+require('./config/passport')(passport)
 
 connectDB()
 
@@ -23,6 +26,10 @@ app.engine('.hbs', exphbs.engine({
 )
 
 app.set('view engine', '.hbs')
+
+//passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
 
 //static folder
 // app.use(express.static('public')) //also works
