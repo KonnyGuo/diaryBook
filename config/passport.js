@@ -10,8 +10,9 @@ module.exports = function(passport){
     }, async(accessToken, refreshToken, profile, done) => { //profile of user and done is callback
         console.log(profile)
 
+
     }))
-    //serialize and deserialize essential makes sure that we ask user.id where it should go while be anomonous
+    //serialize and deserialize basically when passport goes to save user it does not want to save entire user in a way thgat is reversible
     passport.serializeUser(function(user, done) {
         done(null, user.id)
     });
