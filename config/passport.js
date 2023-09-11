@@ -34,18 +34,16 @@ module.exports = function(passport){
 
     }))
     //serialize and deserialize basically when passport goes to save user it does not want to save entire user in a way thgat is reversible
-    passport.serializeUser(async function(user, done) {
+    passport.serializeUser(async (user, done) => {
         done(null, user.id); 
     });
 
-    passport.deserializeUser(async function(id, done) {
-
+    passport.deserializeUser(async (id, done) => {
         try {
             const user = await User.findById(id);
             done(null, user);
-        } catch (error) {
-            done(error, null); 
+        } catch (err) {
+            console.error(err)
         }
-
     });
 }
