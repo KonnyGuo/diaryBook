@@ -28,6 +28,7 @@ app.engine('.hbs', exphbs.engine({
 
 app.set('view engine', '.hbs')
 
+//middlewares are functions that have access to req, res objects
 //session middleware(needs to be above passport middleware)
 //order important because passport session look for session manager attach to req which express-session does to look up user from db
 app.use(session({

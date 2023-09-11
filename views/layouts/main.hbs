@@ -15,11 +15,14 @@
     <title>Diary Book</title>
 </head>
 <body>
+    {{> _header}}
     {{!-- similar to ejs %, need 2 {} for preventing html injection need 3 {} to process html --}}
     <div class="container">
         {{{body}}}
     </div>
     <!-- Compiled and minified JavaScript, materialize from google -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script> M.Sidenav.init(document.querySelector('.sidenav')) </script>
 </body>
 </html>
