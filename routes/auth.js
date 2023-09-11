@@ -7,7 +7,7 @@ const passport = require('passport')
 //@desc auth with google
 //@router GET / /auth/google
 //routes tells server where to send and get data from 
-router.get("/", passport.authenticate('google',{scope: ['profile']}))
+router.get("/google", passport.authenticate('google',{scope: ['profile']}))
 
 
 //@desc google auth callback
