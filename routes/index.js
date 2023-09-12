@@ -27,14 +27,15 @@ router.get("/dashboard", ensureAuth, async (req, res) => {
         //find to get all matches
         //document return from query with lean are js object and not mongoose docs to be able to use in template
         const stories = await Story.find({ user: req.user.id}).lean()
+            // console.log(req.user)
+        res.render("dashboard", {
+            name: req.user.firstName,
+            stories
+        })
     } catch (err) {
         console.error(err)
+        res.render("error/500")
     }
-    // console.log(req.user)
-    res.render("dashboard", {
-        name: req.user.firstName
-        
-    })
 })
 
 module.exports = router
