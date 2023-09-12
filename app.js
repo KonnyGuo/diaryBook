@@ -20,6 +20,11 @@ connectDB()
 if(process.env.NODE_ENV === "development"){
     app.use(morgan('dev'))
 }
+
+//body parser, extended true to take in arrays, not needed this time
+app.use(express.urlencoded({extended:false}))
+app.use(express.json())
+
 //handlebars
 app.engine('.hbs', exphbs.engine({
     defaultLayout: 'main',

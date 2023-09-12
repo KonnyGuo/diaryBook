@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    {{!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> --}}
+    {{!--
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="">
     <!-- Compiled and minified CSS, materialize css from google-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    {{!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> --}}
+    {{!--
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
         integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/style.css">
-        
+
     <title>Diary Book</title>
 </head>
+
 <body>
     {{> _header}}
     {{> btn}}
@@ -23,7 +27,19 @@
     </div>
     <!-- Compiled and minified JavaScript, materialize from google -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 
-    <script> M.Sidenav.init(document.querySelector('.sidenav')) </script>
+    <script> 
+        M.Sidenav.init(document.querySelector('.sidenav'))
+        M.FormSelect.init(document.querySelector('#status'))
+
+        CKEDITOR.replace('body', {
+                plugins: 'wysiwygarea, toolbar, basicstyles, link'
+            })
+    </script>
+
+
 </body>
+
 </html>

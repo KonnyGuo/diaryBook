@@ -13,4 +13,18 @@ router.get("/add", ensureAuth, (req, res) => {
     res.render("stories/add")
 })
 
+//@desc process add form
+//@router GET /stories
+router.post("/", ensureAuth, async(req, res) => {
+    try {
+        req.body.user = req.user.id
+        // can just pass in and the model will populate
+        await Story.create(req.body)
+        res.redirect("/dashboard")
+    } catch(err) {
+        console.error(err)
+        res.render("error/500")
+    }
+})
+
 module.exports = router
