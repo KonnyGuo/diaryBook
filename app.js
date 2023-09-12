@@ -6,6 +6,7 @@ const dotenv = require('dotenv')
 const morgan = require('morgan')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')
 const passport = require('passport')
 
 //confgis
@@ -35,6 +36,9 @@ app.use(session({
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URI
+    })
 
 }))
 
