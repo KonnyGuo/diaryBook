@@ -5,6 +5,8 @@ const router = express.Router()
 //destructuring allows us to bring in both of these item at same time and perform action
 const {ensureAuth, ensureGuest} = require('../middleware/auth')
 
+const Story = require("../models/Story")
+
 //@desc login/landing page
 //@router GET / 
 //reusable protection for routes in app
@@ -19,8 +21,20 @@ router.get("/", ensureGuest, (req, res) => {
 
 //@desc dashboard page
 //@router GET /dashboard
-router.get("/dashboard", ensureAuth, (req, res) => {
-    res.render("dashboard")
+router.get("/dashboard", ensureAuth, async (req, res) => {
+
+    try {
+        //find to get all matches
+        //document return from query with lean are js object and not mongoose docs to be able to use in template
+        const stories = await Story.find({ user: req.user.id}).lean()
+    } catch (err) {
+        console.error(err)
+    }
+    // console.log(req.user)
+    res.render("dashboard", {
+        name: req.user.firstName
+        
+    })
 })
 
 module.exports = router
