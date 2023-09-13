@@ -18,7 +18,8 @@ const StorySchema = new mongoose.Schema({
 
     user: {
         type: mongoose.Schema.Types.ObjectId, //unique objectID of db object associated with specific user
-        ref: 'User' //make reference back to created user model
+        ref: 'User', //make reference back to created user model
+        required: true //app will break if user is not present
     },
 
     createdAt: {

@@ -21,6 +21,7 @@ module.exports = {
         //  this regular expression scans the input string for any HTML tags and replaces them with an empty string, effectively stripping all HTML tags from the input string. 
         return input.replace(/<(?:.|\n)*?>/gm, '')
     },
+    // check if user wrote the story and return link to specific story (with floating icon) for edit
     editIcon: function (storyUser, loggedUser, storyId, floating = true) {
         if (storyUser._id.toString() == loggedUser._id.toString()) {
             if (floating) {
@@ -32,6 +33,7 @@ module.exports = {
             return ''
         }
     },
+    // select helper function takes in a selected value and a block of Handlebars template code (options). It processes the options block, marks the <option> element with a value matching the selected value as "selected," and returns the modified HTML string for rendering a <select> element with the appropriate option pre-selected. 
     select: function (selected, options) {
         return options
             .fn(this)
@@ -44,5 +46,4 @@ module.exports = {
                 ' selected="selected"$&'
             )
     },
-
 }

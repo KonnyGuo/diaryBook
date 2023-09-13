@@ -8,6 +8,7 @@ const exphbs = require('express-handlebars')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const passport = require('passport')
+const methodOverride = require('method-override')
 
 //confgis
 dotenv.config({path: './config/.env'})
@@ -25,15 +26,31 @@ if(process.env.NODE_ENV === "development"){
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 
+//Method Override, use to override form method as default is post and get
+app.use(
+  methodOverride(function (req, res) {
+    //check if you passed in a override if body is object
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+      // look in urlencoded POST bodies and delete it
+      let method = req.body._method
+      delete req.body._method
+      return method
+    }
+  })
+)
+
 //handlebar helpers
-const {formatDate, stripTags, truncate} = require("./helpers/hbs")
+const {formatDate, stripTags, truncate, editIcon, select} = require("./helpers/hbs")
 
 //handlebars
 app.engine('.hbs', exphbs.engine({
     helpers: {
         formatDate,
         stripTags,
-        truncate
+        truncate,
+        editIcon,
+        select,
+
     },
     defaultLayout: 'main',
     extname: '.hbs',
@@ -57,6 +74,13 @@ app.use(session({
 //passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
+
+//global variable set, next is for next middleware
+//req.user val coming from passport and we are setting to global var for handlebar to use
+app.use(function(req, res, next) {
+    res.locals.user = req.user || null
+    next()
+})
 
 //static folder
 // app.use(express.static('public')) //also works
