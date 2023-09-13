@@ -25,8 +25,14 @@ if(process.env.NODE_ENV === "development"){
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 
+//handlebar helpers
+const {formatDate} = require("./helpers/hbs")
+
 //handlebars
 app.engine('.hbs', exphbs.engine({
+    helpers: {
+        formatDate,
+    },
     defaultLayout: 'main',
     extname: '.hbs',
     })

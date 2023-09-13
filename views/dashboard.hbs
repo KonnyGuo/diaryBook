@@ -17,7 +17,8 @@
             {{#each stories}}
             <tr>
                 <td> <a href="/stories/{{id}}"></a> {{title}} </td>
-                <td> {{createdAt}}</td>
+                {{!-- formatDate applied to createdAt function(date, format) in ../helper/hbs.js --}}
+                <td> {{formatDate createdAt 'MMMM Do, h:mm:ss a'}}</td>
                 <td> <span class="dash-status"> {{status}}</span></td>
                 <td></td>
             </tr>
