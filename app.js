@@ -26,12 +26,14 @@ app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 
 //handlebar helpers
-const {formatDate} = require("./helpers/hbs")
+const {formatDate, stripTags, truncate} = require("./helpers/hbs")
 
 //handlebars
 app.engine('.hbs', exphbs.engine({
     helpers: {
         formatDate,
+        stripTags,
+        truncate
     },
     defaultLayout: 'main',
     extname: '.hbs',
