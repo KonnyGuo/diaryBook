@@ -20,7 +20,7 @@ router.get("/google/callback", passport.authenticate('google', {
 })
 
 //@desc logout the user
-//@router GET /auth/google/logout
+//@router GET /auth/logout
 router.get("/logout", (req, res, next) => {
     req.logout((err) => {
         if(err){
