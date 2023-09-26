@@ -6,6 +6,7 @@ module.exports = function(passport){
     passport.use(new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        // callbackURL:"/auth/google/callback" for localhost8000
         callbackURL: 'https://diarybook.onrender.com/auth/google/callback'
     }, async(accessToken, refreshToken, profile, done) => { //profile of user like id, img, name, etc and done is callback
         //create new document of users
