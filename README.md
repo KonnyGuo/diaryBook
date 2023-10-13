@@ -1,5 +1,5 @@
 # diaryBook
-link: https://diarybook.onrender.com/
+link: https://diarybook-0n5p.onrender.com/
 
 This is a diary fullstack web created using google oauth 2.0 for authentication. 
 
